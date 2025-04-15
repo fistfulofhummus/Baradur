@@ -45,7 +45,7 @@
     status.className = "text-blue-500 text-center";
 
     try {
-      const response = await fetch("http://192.16exit8.0.108:8000", {
+      const response = await fetch("http://192.168.0.102:8000", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -61,7 +61,7 @@
       console.log('Success:', result);
       status.innerText = result.message || "Success!";
       status.className = "text-green-500 text-center";
-      window.location.replace("https://orthos.com");
+      window.location.replace("https://google.com");
     } catch (error) {
       console.error('Error during fetch:', error);
       status.innerText = "Login failed. Please try again.";
